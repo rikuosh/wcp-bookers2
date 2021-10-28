@@ -4,6 +4,7 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     @user = current_user
     @book1 = Book.new
+    @book_comment = BookComment.new
   end
 
   def index
@@ -14,7 +15,7 @@ class BooksController < ApplicationController
 
   def create
     @book = Book.new(book_params)
-    @user = current_user 
+    @user = current_user
     @books = Book.all
     @book.user_id = current_user.id
     if @book.save
