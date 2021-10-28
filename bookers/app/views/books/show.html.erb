@@ -1,5 +1,21 @@
 <div class="container px-5 px-sm-0">
  <div class="row">
+
+  <% if @book_comment.errors.any? %>
+<div id="error_explanation">
+  <%= @book_comment.errors.count %> errors prohibited this obj from being saved:
+  <% @book_comment.errors.full_messages.each do |message| %>
+   <ul>
+     <li>
+    <%= message %>
+     </li>
+   </ul>
+  <% end %>
+</div>
+<% end %>
+
+
+
   <%= render "books/list", book: @book1, user1: @book.user %>
 
   <div class="col-md-8 offset-md-1">
@@ -49,7 +65,7 @@
      <td>
       <%= form_with(model:[@book, @book_comment], local: true) do |f|%>
        <%= f.text_area :comment, row:"5" %>
-       <%= f.submit "送信" %> 
+       <%= f.submit "送信" %>
       <% end %>
      </td>
     </tr>
