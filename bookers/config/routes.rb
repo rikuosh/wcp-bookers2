@@ -11,7 +11,13 @@ resources :books, only: [:create, :index, :show, :edit, :update, :destroy] do
  resources :book_comments, only: [:create, :destroy]
 end
 
-resources :users, only: [:show, :index, :edit, :update]
+resources :users, only: [:show, :index, :edit, :update] do
+ member do
+     get :follows, :followers
+ end
+ resource :relationships, only: [:create, :destroy]
+
+end
 
 
 end

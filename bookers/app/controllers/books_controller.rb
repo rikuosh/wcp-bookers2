@@ -5,12 +5,16 @@ class BooksController < ApplicationController
     @user = current_user
     @book1 = Book.new
     @book_comment = BookComment.new
+    @following_users = @book.user.following_user
+    @follower_users = @book.user.follower_user
   end
 
   def index
     @books = Book.all
     @book = Book.new
     @user = current_user
+    @following_users = @user.following_user
+    @follower_users = @user.follower_user
   end
 
   def create
@@ -18,6 +22,8 @@ class BooksController < ApplicationController
     @user = current_user
     @books = Book.all
     @book.user_id = current_user.id
+    @following_users = @user.following_user
+    @follower_users = @user.follower_user
     if @book.save
     flash[:notice] = "You have created book successfully."
     redirect_to book_path(@book.id)
