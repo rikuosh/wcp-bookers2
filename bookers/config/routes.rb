@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get '/search', to: 'searches#search'
   get 'users/show'
   get 'user/show' 
   devise_for :users
@@ -18,6 +19,7 @@ resources :users, only: [:show, :index, :edit, :update] do
  resource :relationships, only: [:create, :destroy]
 
 end
+
 
 
 end
